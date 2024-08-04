@@ -7,6 +7,7 @@ const FormSearch = () => {
 
     const categories = useAppStore(state => state.categories);
     const searchRecipes = useAppStore(state => state.searchRecipes);
+    const showNotification = useAppStore(state => state.showNotification);
     const [filter, setFilter] = useState({
         ingredient: '',
         category: ''
@@ -17,7 +18,10 @@ const FormSearch = () => {
         e.preventDefault();
 
         if (Object.values(filter).includes('')) {
-            setError('Todos los campos son obligatorios');
+            showNotification({
+                text: 'Todos los campos son obligatorios',
+                error: true
+            })
             return
         }
 

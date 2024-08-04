@@ -1,6 +1,7 @@
 import { StateCreator } from "zustand"
 import { fetchCategories, getRecipeById, getRecipes } from "../services/RecipeService"
 import { Category, DrinkAPIResponse, Recipe, SearchFilter } from "../types";
+import { FavoriteSliceType } from "./favoriteSlice";
 
 export type RecipeSliceType = {
     categories: Category[],
@@ -14,11 +15,11 @@ export type RecipeSliceType = {
     closeModal: () => void
 }
 
-export const createRecipeSlice: StateCreator<RecipeSliceType> = (set) => ({
+export const createRecipeSlice: StateCreator<RecipeSliceType & FavoriteSliceType, [], [], RecipeSliceType> = (set) => ({
     categories: [],
     drinks: [],
     recipe: {} as Recipe,
-    modal: true,
+    modal: false,
     fetchCategories: async () => {
         const categories = await fetchCategories()
         set(() => ({

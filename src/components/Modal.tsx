@@ -9,6 +9,9 @@ export default function Modal() {
     const modal = useAppStore(state => state.modal);
     const closeModal = useAppStore(state => state.closeModal);
     const recipe = useAppStore(state => state.recipe);
+    const isFavorite = useAppStore(state => state.isFavorite)
+    const addFavorite = useAppStore(state => state.addFavorite)
+
 
     const renderIngredients = (): JSX.Element[] => {
         let ingredients: JSX.Element[] = [];
@@ -73,6 +76,21 @@ export default function Modal() {
                                         Instrucciones:
                                     </DialogTitle>
                                     <p>{recipe.strInstructions}</p>
+
+                                    <div className='mt-5 flex  justify-between gap-4'>
+                                        <button
+                                            className='w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-500'
+                                            onClick={() => closeModal()}
+                                        >
+                                            Cerrar
+                                        </button>
+                                        <button
+                                            className='w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-500'
+                                            onClick={() => addFavorite(recipe)}
+                                        >
+                                            {isFavorite(recipe.idDrink) ? 'Eliminar Favoritos' : 'Añdir favoritos'}
+                                        </button>
+                                    </div>
                                 </DialogPanel>
                             </TransitionChild>
                         </div>

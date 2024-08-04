@@ -7,3 +7,9 @@ export type SearchFilter = z.infer<typeof SearchFilterSchema>
 export type DrinkAPIResponse = z.infer<typeof DrinkAPIResponseSchema>
 export type DrinksAPIResponse = z.infer<typeof DrinksAPIResponseSchema>
 export type Recipe = z.infer<typeof RecipeAPIResponseSchema>
+
+export type Notification = {
+    text: string,
+    error: boolean,
+    show: boolean
+}
